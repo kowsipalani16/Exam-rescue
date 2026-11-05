@@ -1,0 +1,1220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Rescue</title>
+  <link rel="icon" type="image/png" href="exam-rescue-icon.png">
+  <link rel="manifest" href="manifest.json">
+  
+
+  
+<style>
+  html {
+  scroll-behavior: smooth;
+}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background: #f7f3ff;
+    color: #30204f;
+  }
+
+  header {
+    background: white;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee5ff;
+  }
+
+  .logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #51258c;
+  }
+  nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #51258c;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #a477dc;
+}
+
+  .logo span {
+    color: #a477dc;
+  }
+
+  .container {
+    max-width: 1050px;
+    margin: 45px auto;
+    padding: 0 22px;
+  }
+
+  .welcome {
+    background: linear-gradient(135deg, #673ab7, #9565d9);
+    color: white;
+    padding: 38px;
+    border-radius: 22px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 24px rgba(103, 58, 183, 0.16);
+  }
+
+  .welcome h1 {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .welcome p {
+    color: #f0e8ff;
+    line-height: 1.6;
+  }
+
+  .card {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    border: 1px solid #eee5ff;
+    box-shadow: 0 4px 16px rgba(73, 43, 115, 0.06);
+  }
+  .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(73, 43, 115, 0.10);
+}
+
+  h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #51258c;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+h3 {
+  color: #7042b5;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+  label {
+    display: block;
+    margin: 15px 0 8px;
+    font-weight: bold;
+    color: #49336a;
+  }
+
+  input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dfd2f4;
+  border-radius: 12px;
+  font-size: 15px;
+  background: #fdfbff;
+  color: #30204f;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid #b99ae8;
+    border-color: #895acb;
+  }
+
+  button {
+  background: #7042b5;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 18px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(112, 66, 181, 0.15);
+}
+
+button:hover {
+  background: #51258c;
+  transform: translateY(-2px);
+}
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .feature {
+    background: white;
+    padding: 22px;
+    border: 1px solid #eee5ff;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(73, 43, 115, 0.05);
+  }
+
+  .feature h3 {
+    margin: 12px 0 8px;
+    color: #51258c;
+  }
+
+  .feature p {
+    color: #76698b;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.summary-card {
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid #eee5ff;
+  box-shadow: 0 4px 14px rgba(73, 43, 115, 0.05);
+  text-align: center;
+}
+
+.summary-card h3 {
+  color: #76698b;
+  font-size: 15px;
+}
+
+.summary-card p {
+  color: #51258c;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+.daily-quote {
+  background: #eee5ff;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 28px;
+  text-align: center;
+  border: 1px solid #dfd2f4;
+}
+
+.daily-quote p {
+  color: #51258c;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+  #result {
+    margin-top: 18px;
+    color: #51258c;
+    line-height: 1.7;
+  }
+
+  progress {
+    accent-color: #8050c4;
+  }
+
+  @media (max-width: 650px) {
+    .dashboard-summary {
+  grid-template-columns: repeat(2, 1fr);
+}
+    header {
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+nav {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+    .features {
+      grid-template-columns: 1fr;
+    }
+
+    .welcome {
+      padding: 26px;
+    }
+
+    .welcome h1 {
+      font-size: 24px;
+    }
+
+    .container {
+      margin: 25px auto;
+    }
+  }
+  #pdfDropArea {
+  background: #f5efff;
+  border: 2px dashed #a477dc;
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#pdfDropArea h3 {
+  color: #51258c;
+  margin-bottom: 12px;
+}
+
+#pdfDropArea p {
+  color: #76698b;
+  margin: 8px 0;
+}
+
+#materials {
+  display: none;
+}
+
+.uploadButton {
+  display: inline-block;
+  background: #7042b5;
+  color: white;
+  padding: 13px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+</style>
+
+</head>
+
+<body>
+
+  <header>
+  <div class="logo">Exam <span>Rescue</span></div>
+  <nav>
+    <a href="#preparation">Preparation</a>
+    <a href="#studyProgress">Progress</a>
+    <a href="#flashcards">Flashcards</a>
+  </nav>
+</header>
+
+  <main class="container" id="preparation">
+
+    <section class="welcome">
+      <h1 id="greeting">Let's prepare smarter.</h1>
+      <p>Your exam is approaching. Let's make the most of your study time.</p>
+    </section>
+    <section class="dashboard-summary">
+      <section class="daily-quote">
+  <p id="dailyQuote"></p>
+</section>
+
+  <div class="summary-card">
+    <h3>Total Topics</h3>
+    <p id="totalTopics">0</p>
+  </div>
+
+  <div class="summary-card">
+    <h3>Completed</h3>
+    <p id="completedTopics">0</p>
+  </div>
+
+  <div class="summary-card">
+    <h3>Pending</h3>
+    <p id="pendingTopics">0</p>
+  </div>
+
+  <div class="summary-card">
+    <h3>Overall Progress</h3>
+    <p id="overallProgress">0%</p>
+  </div>
+
+</section>
+
+    <section class="card">
+      <h2>Start your preparation</h2>
+
+      <label for="subject">Subject name</label>
+      <input id="subject" type="text" placeholder="Example: Digital Electronics">
+
+      <label for="examDate">Exam date</label>
+      <input id="examDate" type="date">
+
+      <div id="pdfDropArea">
+
+  <h3>📚 Upload Your Study Materials</h3>
+
+  <p>Drag and drop your PDF here</p>
+  <p>or</p>
+
+  <label for="materials" class="uploadButton">
+    Choose PDF File
+  </label>
+
+  <input
+    id="materials"
+    type="file"
+    accept=".pdf"
+    multiple
+  >
+
+  <p id="pdfStatus">Waiting for PDF upload...</p>
+
+</div>
+
+<button onclick="readPDF()">Read my PDF</button>
+<button onclick="clearPDF()">Remove PDF</button>
+
+<div id="pdfText"></div>
+<button onclick="makeQuickNotes()">Create Quick Notes</button>
+
+<button onclick="makeImportantPoints()">
+  Find Important Points
+</button>
+<div id="summary"></div>
+<div id="importantPoints">
+  <h3>Important Points</h3>
+  <div id="points"></div>
+  <button onclick="explainSimply()">
+  Explain in Simple Words
+</button>
+
+<div id="simpleExplanation"></div>
+<div id="studyPlanner">
+  <h3>Exam Time Planner</h3>
+
+  <label>How many hours can you study today?</label>
+  <input type="number" id="studyHours" placeholder="Enter hours" min="1">
+
+  <button onclick="createTimePlan()">
+    Create My Time Plan
+  </button>
+
+  <div id="timePlan"></div>
+  <div id="topicPriority">
+  <h3>Topic Priority System</h3>
+
+  <label>Enter your topic</label>
+  <input type="text" id="topicName" placeholder="Example: Memory Addressing">
+
+  <label>How difficult is this topic?</label>
+  <select id="topicDifficulty">
+    <option value="Difficult">Difficult</option>
+    <option value="Medium">Medium</option>
+    <option value="Easy">Easy</option>
+  </select>
+
+  <button onclick="addTopic()">Add Topic</button>
+
+  <div id="topicList"></div>
+  <div id="revisionReminder">
+  <h3>Revision Reminder</h3>
+
+  <label>Topic to revise</label>
+  <input type="text" id="revisionTopic" placeholder="Enter topic name">
+
+  <label>Revision date</label>
+  <input type="date" id="revisionDate">
+
+  <button onclick="addRevision()">Add Revision</button>
+
+  <div id="revisionList"></div>
+  <div id="studyProgress" class="card">
+    <div id="smartStudyPlan">
+  <h3>Smart Study Plan</h3>
+
+  <label>When is your exam?</label>
+  <input type="date" id="smartexamDate">
+
+  <label>How many hours can you study daily?</label>
+  <input type="number" id="dailyHours" min="1" max="12"
+    placeholder="Enter hours">
+
+  <button onclick="createSmartPlan()">
+    Create Smart Study Plan
+  </button>
+
+  <div id="smartPlanResult"></div>
+</div>
+<div id="dailyGoals">
+  <h3>Daily Study Goals</h3>
+
+  <label>How many topics do you want to complete today?</label>
+
+  <input
+    type="number"
+    id="dailyTarget"
+    min="1"
+    placeholder="Enter number of topics"
+  >
+
+  <button onclick="setDailyGoal()">
+    Set My Daily Goal
+  </button>
+
+  <div id="dailyGoalResult"></div>
+</div>
+<div id="dailyChecklist">
+  <h3>Daily Study Checklist</h3>
+
+  <label>Enter a topic for today</label>
+
+  <input
+    type="text"
+    id="checklistTopic"
+    placeholder="Example: Memory Addressing"
+  >
+
+  <button onclick="addChecklistTopic()">
+    Add Today's Topic
+  </button>
+
+  <div id="checklistItems"></div>
+</div>
+<div id="quickRevision">
+  <h3>Quick Revision Mode</h3>
+
+  <button onclick="startQuickRevision()">
+    Start Quick Revision
+  </button>
+
+  <div id="revisionContent"></div>
+</div>
+<div id="flashcards" class="card">
+  <h3>Flashcards</h3>
+
+  <label>Enter your question</label>
+  <input
+    type="text"
+    id="flashcardQuestion"
+    placeholder="Example: What is RAM?"
+  >
+
+  <label>Enter your answer</label>
+  <input
+    type="text"
+    id="flashcardAnswer"
+    placeholder="Example: Random Access Memory"
+  >
+
+  <button onclick="addFlashcard()">
+    Add Flashcard
+  </button>
+
+  <div id="flashcardList"></div>
+</div>
+  <h3>My Study Progress</h3>
+
+  <p id="progressCount">0 topics completed</p>
+
+  <progress id="progressBar" value="0" max="100"></progress>
+
+  <div id="progressDetails"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+     
+      <button onclick="createPlan()">Create my study plan</button>
+
+      <div id="result"></div>
+    </section>
+
+    <h2>Your learning engines</h2>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Adaptive Learning</h3>
+        <p>Find out which topics you understand and which need more practice.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Time Engine</h3>
+        <p>Make a study strategy based on your available time.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Memory Engine</h3>
+        <p>Practise remembering concepts and revise them again.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    function createPlan() {
+      const subject = document.getElementById("subject").value;
+      const examDate = document.getElementById("smartexamDate").value;
+      const result = document.getElementById("result");
+
+      if (!subject || !examDate) {
+        result.innerHTML = "Please enter your subject and exam date.";
+        return;
+      }
+
+      const days = Math.ceil(
+        (new Date(examDate + "T00:00:00") - new Date(
+          new Date().toDateString()
+        )) / (1000 * 60 * 60 * 24)
+      );
+
+      if (days < 0) {
+        result.innerHTML = "Please select a future exam date.";
+        return;
+      }
+
+      result.innerHTML =
+        "Your subject: " + subject +
+        "<br>Days remaining: " + days +
+        "<br>Your study plan setup is ready!";
+    }
+  async function readPDF() {
+  const fileInput = document.getElementById("materials");
+  const output = document.getElementById("pdfText");
+  const status = document.getElementById("pdfStatus");
+
+  output.innerText = "PDF button is working!";
+  status.innerText = "Waiting for PDF upload...";
+
+  if (!fileInput.files.length) {
+    output.innerText = "Please upload a PDF first.";
+    status.innerText = "Please upload a PDF.";
+    return;
+  }
+
+  const file = fileInput.files[0];
+
+  if (file.type !== "application/pdf") {
+    output.innerText = "Please select a PDF file.";
+    status.innerText = "Please select a PDF file.";
+    return;
+  }
+
+  output.innerText = "Reading your PDF...";
+  status.innerText = "Reading your PDF...";
+
+  try {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    const data = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data }).promise;
+
+    let fullText = "";
+
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+      const page = await pdf.getPage(pageNum);
+      const content = await page.getTextContent();
+      fullText += content.items.map(item => item.str).join(" ") + "\n";
+    }
+
+    output.innerText = fullText || "No readable text found.";
+
+    status.innerText = fullText.trim()
+      ? "PDF successfully processed!"
+      : "PDF opened, but no readable text was found.";
+
+  } catch (error) {
+    output.innerText = "Unable to read this PDF. Please try again.";
+    status.innerText = "Unable to process PDF.";
+    console.error(error);
+  }
+}
+const pdfDropArea = document.getElementById("pdfDropArea");
+const pdfInput = document.getElementById("materials");
+pdfInput.addEventListener("change", function() {
+  if (pdfInput.files.length > 0) {
+    document.getElementById("pdfStatus").innerText =
+      pdfInput.files[0].name + " selected successfully!";
+  }
+});
+
+pdfDropArea.addEventListener("dragover", function(event) {
+  event.preventDefault();
+  pdfDropArea.style.background = "#e8dcff";
+});
+
+pdfDropArea.addEventListener("dragleave", function() {
+  pdfDropArea.style.background = "#f5efff";
+});
+
+pdfDropArea.addEventListener("drop", function(event) {
+  event.preventDefault();
+
+  pdfDropArea.style.background = "#f5efff";
+
+  const files = event.dataTransfer.files;
+
+  if (files.length > 0) {
+    pdfInput.files = files;
+    document.getElementById("pdfStatus").innerText =
+      files[0].name + " selected successfully!";
+  }
+});
+  function makeQuickNotes() {
+  const pdfText = document.getElementById("pdfText").innerText;
+  const summary = document.getElementById("summary");
+
+  if (!pdfText.trim()) {
+    summary.innerText = "Please read your PDF first.";
+    return;
+  }
+
+  const sentences = pdfText.match(/[^.!?]+[.!?]+/g) || [pdfText];
+
+  summary.innerHTML = "<h3>Your Quick Notes</h3><ul>" +
+    sentences.slice(0, 10).map(sentence =>
+      "<li>" + sentence.trim() + "</li>"
+    ).join("") +
+    "</ul>";
+}
+  function makeImportantPoints() {
+  const pdfText = document.getElementById("pdfText").innerText;
+  const points = document.getElementById("points");
+
+  if (!pdfText.trim()) {
+    points.innerText = "Please read your PDF first.";
+    return;
+  }
+
+  const sentences = pdfText.match(/[^.!?]+[.!?]+/g) || [pdfText];
+
+  const keywords = [
+    "important", "definition", "means",
+    "refers to", "types", "advantages",
+    "disadvantages", "functions", "features"
+  ];
+
+  const selected = sentences.filter(sentence =>
+    keywords.some(word =>
+      sentence.toLowerCase().includes(word)
+    )
+  );
+
+  points.innerHTML = "<ul>" +
+    (selected.length ? selected : sentences.slice(0, 5))
+      .slice(0, 10)
+      .map(sentence => "<li>" + sentence.trim() + "</li>")
+      .join("") +
+    "</ul>";
+}
+  function explainSimply() {
+  const pdfText = document.getElementById("pdfText").innerText;
+  const output = document.getElementById("simpleExplanation");
+
+  if (!pdfText.trim()) {
+    output.innerText = "Please read your PDF first.";
+    return;
+  }
+
+  const sentences = pdfText.match(/[^.!?]+[.!?]+/g) || [pdfText];
+
+  output.innerHTML = "<h3>Simple Explanation</h3><ul>" +
+    sentences.slice(0, 5).map(sentence =>
+      "<li>" + sentence.trim() + "</li>"
+    ).join("") +
+    "</ul>";
+}
+  function createTimePlan() {
+  const hours = Number(document.getElementById("studyHours").value);
+  const output = document.getElementById("timePlan");
+
+  if (!hours || hours <= 0) {
+    output.innerText = "Please enter your study hours.";
+    return;
+  }
+
+  const study = Math.round(hours * 60 * 0.7);
+  const revision = Math.round(hours * 60 * 0.2);
+  const breakTime = hours * 60 - study - revision;
+
+  output.innerHTML = `
+    <h3>Your Study Schedule</h3>
+    <p>📚 Study: ${study} minutes</p>
+    <p>🔄 Revision: ${revision} minutes</p>
+    <p>☕ Breaks: ${breakTime} minutes</p>
+  `;
+}
+  let topics = [];
+
+function addTopic() {
+  const name = document.getElementById("topicName").value.trim();
+  const difficulty = document.getElementById("topicDifficulty").value;
+  const list = document.getElementById("topicList");
+
+  if (!name) {
+    list.innerText = "Please enter a topic.";
+    return;
+  }
+
+  topics.push({ name, difficulty , completed: false });
+  localStorage.setItem("examTopics", JSON.stringify(topics));
+
+  const priority = {
+    Difficult: 1,
+    Medium: 2,
+    Easy: 3
+  };
+
+  topics.sort((a, b) =>
+    priority[a.difficulty] - priority[b.difficulty]
+  );
+
+  list.innerHTML = "<h3>Your Study Topics</h3><ol>" +
+  topics.map((topic, index) =>
+    `<li>
+      <input type="checkbox"
+        ${topic.completed ? "checked" : ""}
+        onchange="toggleTopic(${index}, this.checked)">
+      ${topic.name} — ${topic.difficulty}
+    </li>`
+  ).join("") +
+  "</ol>";
+
+updateProgress();
+
+  document.getElementById("topicName").value = "";
+}
+let revisions = [];
+
+function addRevision() {
+  const topic = document.getElementById("revisionTopic").value.trim();
+  const date = document.getElementById("revisionDate").value;
+  const output = document.getElementById("revisionList");
+
+  if (!topic || !date) {
+    output.innerText = "Please enter a topic and revision date.";
+    return;
+  }
+
+  revisions.push({ topic, date });
+  localStorage.setItem("examRevisions", JSON.stringify(revisions));
+
+  revisions.sort((a, b) => a.date.localeCompare(b.date));
+
+  output.innerHTML = "<h3>Upcoming Revisions</h3><ul>" +
+    revisions.map(item =>
+      `<li>${item.topic} — ${item.date}</li>`
+    ).join("") +
+    "</ul>";
+
+  document.getElementById("revisionTopic").value = "";
+  document.getElementById("revisionDate").value = "";
+}
+  window.addEventListener("load", function() {
+  const savedTopics = localStorage.getItem("examTopics");
+
+  if (savedTopics) {
+    topics = JSON.parse(savedTopics).map(topic => ({
+  ...topic,
+  completed: topic.completed ?? false
+}));
+
+    const priority = {
+      Difficult: 1,
+      Medium: 2,
+      Easy: 3
+    };
+
+    topics.sort((a, b) =>
+      priority[a.difficulty] - priority[b.difficulty]
+    );
+
+      document.getElementById("topicList").innerHTML =
+  "<h3>Your Study Topics</h3><ol>" +
+  topics.map((topic, index) =>
+    `<li>
+      <input type="checkbox"
+        ${topic.completed ? "checked" : ""}
+        onchange="toggleTopic(${index}, this.checked)">
+      ${topic.name} — ${topic.difficulty}
+    </li>`
+  ).join("") +
+  "</ol>";
+  }
+updateProgress();
+updateDailyGoal();
+  const savedRevisions = localStorage.getItem("examRevisions");
+
+if (savedRevisions) {
+  revisions = JSON.parse(savedRevisions);
+
+  revisions.sort((a, b) => a.date.localeCompare(b.date));
+
+  document.getElementById("revisionList").innerHTML =
+    "<h3>Upcoming Revisions</h3><ul>" +
+    revisions.map(item =>
+      `<li>${item.topic} — ${item.date}</li>`
+    ).join("") +
+    "</ul>";
+}
+const savedChecklist = localStorage.getItem("dailyChecklist");
+
+if (savedChecklist) {
+  dailyChecklist = JSON.parse(savedChecklist);
+  displayChecklist();
+}
+const savedFlashcards = localStorage.getItem("examFlashcards");
+
+if (savedFlashcards) {
+  flashcards = JSON.parse(savedFlashcards);
+  displayFlashcards();
+}
+});
+function toggleTopic(index, checked) {
+  topics[index].completed = checked;
+
+  const today = new Date();
+  topics[index].completedDate = checked
+    ? today.getFullYear() + "-" +
+      String(today.getMonth() + 1).padStart(2, "0") + "-" +
+      String(today.getDate()).padStart(2, "0")
+    : null;
+
+  localStorage.setItem("examTopics", JSON.stringify(topics));
+
+  updateProgress();
+  updateDailyGoal();
+}
+
+function updateProgress() {
+  const total = topics.length;
+  const completed = topics.filter(topic => topic.completed).length;
+
+  const percentage = total === 0
+    ? 0
+    : Math.round((completed / total) * 100);
+
+  document.getElementById("progressCount").innerText =
+    completed + " of " + total + " topics completed";
+
+  document.getElementById("progressBar").value = percentage;
+
+  document.getElementById("progressDetails").innerText =
+    percentage + "% completed";
+    document.getElementById("totalTopics").innerText = total;
+
+document.getElementById("completedTopics").innerText = completed;
+
+document.getElementById("pendingTopics").innerText = total - completed;
+
+document.getElementById("overallProgress").innerText =
+  percentage + "%";
+}
+function createSmartPlan() {
+  const examDate = document.getElementById("examDate").value;
+  const dailyHours = Number(document.getElementById("dailyHours").value);
+  const output = document.getElementById("smartPlanResult");
+
+  if (topics.length === 0) {
+    output.innerText = "Please add your study topics first.";
+    return;
+  }
+
+  if (!examDate || dailyHours < 1 || dailyHours > 12) {
+    output.innerText = "Please enter a valid exam date and daily study hours.";
+    return;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const exam = new Date(examDate + "T00:00:00");
+
+  const days = Math.ceil(
+    (exam - today) / (1000 * 60 * 60 * 24)
+  );
+
+  if (days < 1) {
+    output.innerText = "Please choose a future exam date.";
+    return;
+  }
+
+  const pendingTopics = topics.filter(topic => !topic.completed);
+
+  if (pendingTopics.length === 0) {
+    output.innerText = "All your topics are completed!";
+    return;
+  }
+
+  const studyMinutes = dailyHours * 60;
+
+const difficultyWeight = {
+  Difficult: 3,
+  Medium: 2,
+  Easy: 1
+};
+
+const topicsPerDay = Math.ceil(pendingTopics.length / days);
+
+  let planHTML = "<h3>Your Smart Study Schedule</h3>";
+
+  for (let day = 0; day < days; day++) {
+    const start = day * topicsPerDay;
+    const dailyTopics = pendingTopics.slice(
+      start,
+      start + topicsPerDay
+    );
+
+    if (dailyTopics.length === 0) break;
+
+    const date = new Date(today);
+    date.setDate(today.getDate() + day);
+
+    planHTML += "<h4>Day " + (day + 1) +
+      " — " + date.toLocaleDateString() + "</h4>";
+
+    planHTML += "<ul>";
+
+    const dailyWeight = dailyTopics.reduce(
+  (sum, topic) => sum + difficultyWeight[topic.difficulty],
+  0
+);
+
+dailyTopics.forEach(topic => {
+  const minutes = Math.round(
+    studyMinutes * difficultyWeight[topic.difficulty] / dailyWeight
+  );
+
+  planHTML += "<li>" + topic.name +
+    " — " + topic.difficulty +
+    " — " + minutes + " minutes</li>";
+});
+    planHTML += "</ul>";
+    planHTML += "<p>Available study time: " +
+      studyMinutes + " minutes</p>";
+  }
+
+  output.innerHTML = planHTML;
+}
+function setDailyGoal() {
+  const target = Number(
+    document.getElementById("dailyTarget").value
+  );
+
+  const result = document.getElementById("dailyGoalResult");
+
+  if (!Number.isInteger(target) || target < 1) {
+    result.innerText = "Please enter a valid number of topics.";
+    return;
+  }
+
+  localStorage.setItem("examDailyGoal", target);
+
+  updateDailyGoal();
+}
+
+function updateDailyGoal() {
+  const target = Number(localStorage.getItem("examDailyGoal"));
+
+  const result = document.getElementById("dailyGoalResult");
+
+  if (!target) return;
+
+  const today = new Date();
+  const todayKey = today.getFullYear() + "-" +
+    String(today.getMonth() + 1).padStart(2, "0") + "-" +
+    String(today.getDate()).padStart(2, "0");
+
+  const completedToday = topics.filter(topic =>
+    topic.completed && topic.completedDate === todayKey
+  ).length;
+
+  const percentage = Math.min(
+    100,
+    Math.round((completedToday / target) * 100)
+  );
+
+  result.innerHTML =
+    "<h4>Today's Goal: " + target + " topics</h4>" +
+    "<p>" + completedToday + " of " + target +
+    " topics completed</p>" +
+    "<progress value='" + percentage +
+    "' max='100'></progress>" +
+    "<p>" + percentage + "% completed</p>";
+}
+let dailyChecklist = [];
+
+function addChecklistTopic() {
+  const input = document.getElementById("checklistTopic");
+  const topic = input.value.trim();
+  const list = document.getElementById("checklistItems");
+
+  if (!topic) {
+    list.innerText = "Please enter a topic.";
+    return;
+  }
+
+  dailyChecklist.push({
+    name: topic,
+    completed: false
+  });
+
+  localStorage.setItem(
+    "dailyChecklist",
+    JSON.stringify(dailyChecklist)
+  );
+
+  displayChecklist();
+
+  input.value = "";
+}
+
+function displayChecklist() {
+  const list = document.getElementById("checklistItems");
+
+  list.innerHTML = "<h4>Today's Topics</h4><ul>" +
+    dailyChecklist.map((item, index) =>
+      `<li>
+        <input type="checkbox"
+          ${item.completed ? "checked" : ""}
+          onchange="toggleChecklistTopic(${index}, this.checked)">
+        ${item.name}
+      </li>`
+    ).join("") +
+    "</ul>";
+}
+
+function toggleChecklistTopic(index, checked) {
+  dailyChecklist[index].completed = checked;
+
+  localStorage.setItem(
+    "dailyChecklist",
+    JSON.stringify(dailyChecklist)
+  );
+
+  displayChecklist();
+}
+function startQuickRevision() {
+  const output = document.getElementById("revisionContent");
+
+  if (topics.length === 0) {
+    output.innerText = "Please add your study topics first.";
+    return;
+  }
+
+  const pendingTopics = topics.filter(topic => !topic.completed);
+
+  const completedTopics = topics.filter(topic => topic.completed);
+
+  output.innerHTML = "<h4>Topics to Revise</h4><ul>" +
+    completedTopics.map(topic =>
+      "<li>" + topic.name + " — Completed</li>"
+    ).join("") +
+    "</ul><h4>Topics Still to Study</h4><ul>" +
+    pendingTopics.map(topic =>
+      "<li>" + topic.name + " — " + topic.difficulty + "</li>"
+    ).join("") +
+    "</ul>";
+}
+let flashcards = [];
+
+function addFlashcard() {
+  const question = document.getElementById("flashcardQuestion").value.trim();
+  const answer = document.getElementById("flashcardAnswer").value.trim();
+  const list = document.getElementById("flashcardList");
+
+  if (!question || !answer) {
+    list.innerText = "Please enter both a question and an answer.";
+    return;
+  }
+
+  flashcards.push({ question, answer });
+
+  localStorage.setItem("examFlashcards", JSON.stringify(flashcards));
+
+  displayFlashcards();
+
+  document.getElementById("flashcardQuestion").value = "";
+  document.getElementById("flashcardAnswer").value = "";
+}
+
+function displayFlashcards() {
+  const list = document.getElementById("flashcardList");
+
+  list.innerHTML = "<h4>Your Flashcards</h4>" +
+    flashcards.map((card, index) =>
+      `<div>
+        <p><strong>Q:</strong> ${card.question}</p>
+        <p><strong>A:</strong> ${card.answer}</p>
+      </div>`
+    ).join("");
+}
+  function updateGreeting() {
+  const hour = new Date().getHours();
+
+  let message;
+
+  if (hour < 12) {
+    message = "Good morning! ☀️";
+  } else if (hour < 17) {
+    message = "Good afternoon! 🌤️";
+  } else {
+    message = "Good evening! 🌙";
+  }
+
+  document.getElementById("greeting").innerText = message;
+}
+function updateDailyQuote() {
+  const quotes = [
+    "Small steps every day lead to big results.",
+    "Your effort today is your success tomorrow.",
+    "Believe in your preparation.",
+    "Consistency is the key to success.",
+    "Every topic you learn brings you closer to your goal.",
+    "Stay focused. Your hard work matters.",
+    "Progress is better than perfection."
+  ];
+
+  const today = new Date();
+  const dayIndex = Math.floor(
+    (today - new Date(today.getFullYear(), 0, 0)) / 86400000
+  );
+
+  const quoteIndex = dayIndex % quotes.length;
+
+  document.getElementById("dailyQuote").innerText =
+    "✦ " + quotes[quoteIndex] + " ✦";
+}
+
+updateDailyQuote();
+updateGreeting();
+ function clearPDF() {
+  document.getElementById("materials").value = "";
+  document.getElementById("pdfText").innerText = "";
+  document.getElementById("pdfStatus").innerText =
+    "Waiting for PDF upload...";
+
+  document.getElementById("pdfDropArea").style.background =
+    "#f5efff";
+} 
+  </script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(function() {
+        console.log("Exam Rescue is ready!");
+      })
+      .catch(function(error) {
+        console.log("Service Worker error:", error);
+      });
+  });
+}
+</script>
+</body>
+</html>
